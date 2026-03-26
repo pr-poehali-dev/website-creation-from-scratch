@@ -11,29 +11,29 @@ const NAV_LINKS = [
 ];
 
 const SERVICES = [
-  { icon: "Monitor", title: "Шоу-игры", desc: "Интерактивные игровые программы на большом экране — драйв, смех и эмоции для всех!" },
+  { icon: "Monitor", title: "Шоу-игры", desc: "Интерактивные программы на большом экране — раунды, задания, смех и командный азарт!" },
   { icon: "Mic", title: "Профи-ведущие", desc: "Харизматичные ведущие, которые зажгут атмосферу и не дадут скучать ни минуты." },
-  { icon: "Music", title: "Профессиональное караоке", desc: "Студийное звучание и профессиональное оборудование — почувствуй себя звездой!" },
-  { icon: "UtensilsCrossed", title: "Банкетная зона", desc: "Уютное лофт-пространство с вкусной едой для душевного общения и отдыха." },
+  { icon: "Music", title: "Профи-караоке", desc: "Студийное звучание и профессиональное оборудование — почувствуй себя звездой!" },
+  { icon: "UtensilsCrossed", title: "Банкетная зона", desc: "Уютный лофт с вкусной едой для общения и отдыха между игровыми раундами." },
 ];
 
 const EVENTS = [
-  { emoji: "🎂", title: "День рождения", desc: "Незабываемый праздник, который запомнится на всю жизнь" },
-  { emoji: "🥂", title: "Юбилей", desc: "Торжество, наполненное счастливыми моментами" },
-  { emoji: "💼", title: "Корпоратив", desc: "Мероприятие, которое сплотит команду" },
-  { emoji: "🎓", title: "Выпускной", desc: "Вечер, о котором будут говорить ещё долго" },
-  { emoji: "💃", title: "Девичник", desc: "Полный веселья и приятных сюрпризов" },
-  { emoji: "🏆", title: "Корп. события", desc: "Уникальная атмосфера для вашего бизнеса" },
+  { emoji: "🎂", title: "День рождения", desc: "Незабываемый праздник на всю жизнь", age: "any" },
+  { emoji: "🥂", title: "Юбилей", desc: "Торжество, полное счастливых моментов", age: "adult" },
+  { emoji: "💼", title: "Корпоратив", desc: "Мероприятие, которое сплотит команду", age: "adult" },
+  { emoji: "🎓", title: "Выпускной", desc: "Вечер, о котором будут говорить ещё долго", age: "teen" },
+  { emoji: "💃", title: "Девичник", desc: "Веселье и приятные сюрпризы", age: "adult" },
+  { emoji: "🎈", title: "Детский праздник", desc: "Игры, смех и море радости для малышей", age: "kids" },
 ];
 
 const FRANCHISE_PERKS = [
-  { icon: "TrendingUp", title: "Готовый бизнес", desc: "Проверенная бизнес-модель с понятными показателями окупаемости" },
-  { icon: "BookOpen", title: "Полное обучение", desc: "Обучаем команду, передаём все сценарии и технологии шоу-игр" },
-  { icon: "Headphones", title: "Поддержка 24/7", desc: "Постоянная поддержка от команды ЛАЙФДРАЙФ на всех этапах работы" },
-  { icon: "Star", title: "Сильный бренд", desc: "Работайте под узнаваемым брендом с уникальным продуктом на рынке" },
+  { icon: "TrendingUp", title: "Готовый бизнес", desc: "Проверенная модель с понятными показателями окупаемости" },
+  { icon: "BookOpen", title: "Полное обучение", desc: "Обучаем команду, передаём все сценарии и технологии" },
+  { icon: "Headphones", title: "Поддержка 24/7", desc: "Постоянная поддержка на всех этапах работы" },
+  { icon: "Star", title: "Сильный бренд", desc: "Работайте под узнаваемым брендом с уникальным продуктом" },
 ];
 
-function useInView(threshold = 0.15) {
+function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -62,25 +62,26 @@ export default function Index() {
   };
 
   const aboutAnim = useInView();
+  const audienceAnim = useInView();
   const servicesAnim = useInView();
   const eventsAnim = useInView();
   const franchiseAnim = useInView();
   const contactAnim = useInView();
 
   return (
-    <div className="min-h-screen bg-[#080810] font-golos overflow-x-hidden">
+    <div className="min-h-screen bg-[#0d0d18] font-golos overflow-x-hidden">
 
       {/* NAV */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-dark py-3 shadow-[0_4px_30px_rgba(0,180,255,0.1)]" : "py-5"}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-dark py-3 shadow-[0_4px_24px_rgba(0,0,0,0.4)]" : "py-5"}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-1">
-            <span className="font-oswald text-2xl font-bold neon-text-blue">ЛАЙФ</span>
-            <span className="font-oswald text-2xl font-bold neon-text-pink">ДРАЙФ</span>
+            <span className="font-oswald text-xl font-black neon-text-blue">ЛАЙФ</span>
+            <span className="font-oswald text-xl font-black neon-text-pink">ДРАЙФ</span>
           </a>
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7">
             {NAV_LINKS.map(l => (
               <a key={l.href} href={l.href}
-                className="text-sm font-golos text-white/60 hover:text-white transition-colors duration-200 uppercase tracking-wider">
+                className="text-sm font-golos font-600 text-white/55 hover:text-white transition-colors duration-200 uppercase tracking-wider">
                 {l.label}
               </a>
             ))}
@@ -102,62 +103,71 @@ export default function Index() {
       </nav>
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+        {/* мягкий фоновый свет */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#00b4ff] opacity-5 blur-[120px] animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-[#ff0080] opacity-6 blur-[100px] animate-float" style={{ animationDelay: "2s" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-[#cc00ff] opacity-4 blur-[80px] animate-float" style={{ animationDelay: "4s" }} />
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: "linear-gradient(#00b4ff 1px, transparent 1px), linear-gradient(90deg, #00b4ff 1px, transparent 1px)",
-            backgroundSize: "60px 60px"
-          }} />
+          <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full bg-[#3db8e8] opacity-[0.04] blur-[130px]" />
+          <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-[#e8407a] opacity-[0.05] blur-[110px]" />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-16">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-16">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
 
-            {/* LEFT — текст */}
-            <div className="flex flex-col gap-6 animate-fade-in-up">
-              {/* бейдж новой студии */}
+            {/* LEFT */}
+            <div className="flex flex-col gap-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full self-start"
-                style={{ background: "rgba(255,0,128,0.12)", border: "1px solid rgba(255,0,128,0.4)", boxShadow: "0 0 15px rgba(255,0,128,0.2)" }}>
-                <span className="w-2 h-2 rounded-full bg-[#ff0080] animate-pulse" style={{ boxShadow: "0 0 6px #ff0080" }} />
-                <span className="font-golos text-sm text-[#ff0080] font-semibold tracking-wide">Открылась вторая студия в г. Мелеуз!</span>
+                style={{ background: "rgba(232,64,122,0.1)", border: "1px solid rgba(232,64,122,0.3)" }}>
+                <span className="w-2 h-2 rounded-full bg-[#e8407a] animate-pulse" />
+                <span className="font-golos text-sm font-bold text-[#e8407a]">Открылась вторая студия в г. Мелеуз!</span>
               </div>
 
-              <h1 className="font-oswald leading-tight">
-                <span className="block text-5xl md:text-6xl lg:text-7xl text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.1)" }}>
-                  Студия шоу-игр
-                </span>
+              <h1 className="font-oswald font-black leading-[1.1]">
+                <span className="block text-4xl md:text-5xl lg:text-6xl text-white/90">Студия шоу-игр</span>
                 <span className="block text-5xl md:text-6xl lg:text-7xl mt-1">
                   <span className="neon-text-blue">«ЛАЙФ</span><span className="neon-text-pink">ДРАЙФ»</span>
                 </span>
               </h1>
 
-              <p className="font-golos text-lg text-white/60 leading-relaxed max-w-lg" style={{ animationDelay: "0.2s" }}>
-                Превращаем любое событие в <span className="text-white font-semibold">феерию эмоций!</span> Шоу-игры, профи-ведущие, живое настоящее веселье.
+              <p className="font-golos text-lg text-white/60 leading-relaxed max-w-lg">
+                Превращаем любое событие в феерию эмоций — <span className="text-white font-bold">для детей и взрослых!</span> Шоу-игры, профи-ведущие, лофт-пространство.
               </p>
 
-              <div className="flex items-center gap-4 text-white/40 font-golos text-sm">
+              {/* аудитории — пилюли */}
+              <div className="flex flex-wrap gap-3">
+                <span className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold font-golos"
+                  style={{ background: "rgba(255,190,50,0.12)", border: "1px solid rgba(255,190,50,0.3)", color: "#ffbe32" }}>
+                  🎈 Для детей
+                </span>
+                <span className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold font-golos"
+                  style={{ background: "rgba(61,184,232,0.1)", border: "1px solid rgba(61,184,232,0.3)", color: "#3db8e8" }}>
+                  🥂 Для взрослых
+                </span>
+                <span className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold font-golos"
+                  style={{ background: "rgba(168,85,212,0.1)", border: "1px solid rgba(168,85,212,0.3)", color: "#c47de0" }}>
+                  🏆 Корпоративы
+                </span>
+              </div>
+
+              <div className="flex items-center gap-5 text-white/40 font-golos text-sm">
                 <div className="flex items-center gap-1.5">
-                  <Icon name="MapPin" size={14} className="text-[#00b4ff]" />
+                  <Icon name="MapPin" size={14} className="text-[#3db8e8]" />
                   <span>Салехард</span>
                 </div>
-                <span className="text-white/20">·</span>
+                <span className="text-white/15">·</span>
                 <div className="flex items-center gap-1.5">
-                  <Icon name="MapPin" size={14} className="text-[#ff0080]" />
-                  <span className="text-[#ff0080] font-semibold">Мелеуз — новая!</span>
+                  <Icon name="MapPin" size={14} className="text-[#e8407a]" />
+                  <span className="text-[#e8407a] font-bold">Мелеуз — новая!</span>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 mt-2" style={{ animationDelay: "0.4s" }}>
+              <div className="flex flex-col sm:flex-row gap-4 mt-1">
                 <a href="#contacts">
-                  <button className="neon-btn-pink font-oswald text-base px-8 py-4 rounded-xl uppercase tracking-widest">
+                  <button className="neon-btn-pink font-oswald font-black text-base px-8 py-4 rounded-2xl uppercase tracking-widest">
                     Забронировать праздник
                   </button>
                 </a>
                 <a href="#services">
-                  <button className="neon-btn-blue font-oswald text-base px-8 py-4 rounded-xl uppercase tracking-widest">
+                  <button className="neon-btn-blue font-oswald font-black text-base px-8 py-4 rounded-2xl uppercase tracking-widest">
                     Узнать больше
                   </button>
                 </a>
@@ -165,41 +175,108 @@ export default function Index() {
             </div>
 
             {/* RIGHT — фото */}
-            <div className="flex justify-center md:justify-end animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <img
-                src="https://cdn.poehali.dev/projects/3e4fa183-e244-463c-a1c5-d541bb2b4e6c/bucket/1ada720f-8bf6-4447-9c0e-6472b3bb9641.jpg"
-                alt="ЛАЙФДРАЙФ — Студия шоу-игр"
-                className="w-full max-w-md rounded-3xl opacity-95 animate-neon-pulse"
-                style={{ boxShadow: "0 0 60px rgba(0,180,255,0.35), 0 0 120px rgba(255,0,128,0.2)" }}
-              />
+            <div className="flex justify-center md:justify-end">
+              <div className="relative">
+                <div className="absolute -inset-4 rounded-3xl opacity-30 blur-2xl"
+                  style={{ background: "linear-gradient(135deg, rgba(61,184,232,0.3), rgba(232,64,122,0.3))" }} />
+                <img
+                  src="https://cdn.poehali.dev/projects/3e4fa183-e244-463c-a1c5-d541bb2b4e6c/bucket/1ada720f-8bf6-4447-9c0e-6472b3bb9641.jpg"
+                  alt="ЛАЙФДРАЙФ — Студия шоу-игр"
+                  className="relative w-full max-w-md rounded-3xl"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/25">
           <span className="text-xs uppercase tracking-widest font-golos">Листай вниз</span>
-          <Icon name="ChevronDown" size={20} className="animate-bounce" />
+          <Icon name="ChevronDown" size={18} className="animate-bounce" />
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* АУДИТОРИЯ — для детей и взрослых */}
+      <section ref={audienceAnim.ref} className="py-20 px-6 max-w-7xl mx-auto">
+        <div className={`transition-all duration-700 ${audienceAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="text-center mb-12">
+            <p className="font-golos text-sm font-bold uppercase tracking-[0.25em] mb-3" style={{ color: "#a855d4" }}>Для всех возрастов</p>
+            <h2 className="font-oswald font-black text-4xl md:text-5xl text-white">
+              Подходит <span className="neon-text-blue">детям</span> и <span className="neon-text-pink">взрослым</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Дети */}
+            <div className="card-kids rounded-3xl p-8 flex flex-col gap-5">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">🎈</span>
+                <div>
+                  <h3 className="font-oswald font-black text-2xl text-white">Для детей</h3>
+                  <p className="font-golos text-sm" style={{ color: "#ffbe32" }}>от 5 лет и старше</p>
+                </div>
+              </div>
+              <p className="font-golos text-white/65 leading-relaxed">
+                Специальные детские шоу-программы с яркими персонажами, простыми правилами и морем веселья. Ребята не только играют — они становятся настоящими героями праздника!
+              </p>
+              <ul className="flex flex-col gap-2">
+                {["Детские дни рождения", "Выпускные в детском саду", "Тематические праздники", "Командные игры для детей"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 font-golos text-sm text-white/70">
+                    <span className="text-[#ffbe32]">✦</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Взрослые */}
+            <div className="card-adults rounded-3xl p-8 flex flex-col gap-5">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">🥂</span>
+                <div>
+                  <h3 className="font-oswald font-black text-2xl text-white">Для взрослых</h3>
+                  <p className="font-golos text-sm neon-text-blue">любой возраст</p>
+                </div>
+              </div>
+              <p className="font-golos text-white/65 leading-relaxed">
+                Динамичные шоу-игры в формате популярных телешоу, профессиональное караоке и атмосфера настоящего клуба. Идеально для компании, корпоратива или семейного торжества.
+              </p>
+              <ul className="flex flex-col gap-2">
+                {["Юбилеи и дни рождения", "Корпоративы и тимбилдинг", "Девичники и мальчишники", "Семейные праздники"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 font-golos text-sm text-white/70">
+                    <span className="neon-text-blue">✦</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
       <div className="section-divider" />
 
       {/* ABOUT */}
-      <section id="about" ref={aboutAnim.ref} className="py-24 px-6 max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${aboutAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+      <section id="about" ref={aboutAnim.ref} className="py-20 px-6 max-w-7xl mx-auto">
+        <div className={`transition-all duration-700 ${aboutAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="font-oswald text-[#00b4ff] uppercase tracking-[0.3em] text-sm mb-3">О студии</p>
-              <h2 className="font-oswald text-4xl md:text-5xl text-white font-bold mb-6 leading-tight">
-                Добро пожаловать в мир<br />
-                <span className="neon-text-pink">незабываемых</span> праздников
+              <p className="font-golos text-sm font-bold uppercase tracking-[0.25em] neon-text-blue mb-3">О студии</p>
+              <h2 className="font-oswald font-black text-4xl md:text-5xl text-white mb-6 leading-tight">
+                Мир незабываемых<br />
+                <span className="neon-text-pink">праздников</span>
               </h2>
               <p className="font-golos text-white/60 text-lg leading-relaxed mb-6">
                 Мы — команда профессионалов, готовая превратить любое событие в феерию эмоций и радости! В нашем стильном лофт-пространстве можно организовать праздник для любого возраста.
               </p>
-              <div className="flex items-center gap-3 text-white/50 font-golos">
-                <Icon name="MapPin" size={18} className="text-[#00b4ff]" />
-                <span>г. Салехард, ул. Маяковского 19А</span>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3 text-white/50 font-golos text-sm">
+                  <Icon name="MapPin" size={16} className="text-[#3db8e8] flex-shrink-0" />
+                  <span>г. Салехард, ул. Маяковского 19А</span>
+                </div>
+                <div className="flex items-center gap-3 font-golos text-sm" style={{ color: "#e8407a" }}>
+                  <Icon name="MapPin" size={16} className="flex-shrink-0" style={{ color: "#e8407a" }} />
+                  <span className="font-bold">г. Мелеуз — вторая студия открылась!</span>
+                </div>
               </div>
             </div>
 
@@ -207,31 +284,32 @@ export default function Index() {
               {[
                 { num: "500+", label: "Праздников проведено" },
                 { num: "100%", label: "Довольных гостей" },
-                { num: "6", label: "Форматов мероприятий" },
-                { num: "1", label: "Студия в Салехарде" },
+                { num: "6+", label: "Форматов мероприятий" },
+                { num: "2", label: "Студии в России" },
               ].map((s, i) => (
-                <div key={i} className="neon-border-blue rounded-2xl p-6 glass-dark text-center">
-                  <div className="font-oswald text-4xl font-bold neon-text-blue mb-1">{s.num}</div>
+                <div key={i} className="glass-dark neon-border-blue rounded-2xl p-6 text-center">
+                  <div className="font-oswald font-black text-4xl neon-text-blue mb-1">{s.num}</div>
                   <div className="font-golos text-white/50 text-sm">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-16 neon-border-pink rounded-3xl p-8 glass-dark">
-            <h3 className="font-oswald text-2xl text-white font-bold mb-6">
+          {/* шоу-игры */}
+          <div className="mt-14 glass-dark neon-border-pink rounded-3xl p-8">
+            <h3 className="font-oswald font-black text-2xl text-white mb-5">
               <span className="neon-text-pink">Что такое</span> шоу-игры?
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-5">
               {[
                 "Интерактивные развлекательные программы на большом экране с раундами и заданиями — как на популярных телешоу.",
                 "Шоу-игры становятся центральным элементом праздника, создавая настоящий драйв и бурю позитивных эмоций.",
-                "Юмор, музыкальные номера и творческие задания делают каждую игру незабываемой для всех участников.",
-                "Мы адаптируем программу под любой возраст и аудиторию — каждый гость принимает участие и получает удовольствие.",
+                "Юмор, музыка, творческие задания — каждая игра незабываема и для детей, и для взрослых.",
+                "Программа адаптируется под любую аудиторию — каждый гость участвует и получает удовольствие.",
               ].map((text, i) => (
                 <div key={i} className="flex gap-3">
-                  <div className="w-2 h-2 rounded-full bg-[#ff0080] mt-2 flex-shrink-0" style={{ boxShadow: "0 0 8px #ff0080" }} />
-                  <p className="font-golos text-white/60 leading-relaxed">{text}</p>
+                  <span className="neon-text-pink mt-0.5 flex-shrink-0">✦</span>
+                  <p className="font-golos text-white/60 leading-relaxed text-sm">{text}</p>
                 </div>
               ))}
             </div>
@@ -242,23 +320,23 @@ export default function Index() {
       <div className="section-divider" />
 
       {/* SERVICES */}
-      <section id="services" ref={servicesAnim.ref} className="py-24 px-6 max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${servicesAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="text-center mb-16">
-            <p className="font-oswald text-[#ff0080] uppercase tracking-[0.3em] text-sm mb-3">Что вас ждёт</p>
-            <h2 className="font-oswald text-4xl md:text-5xl text-white font-bold">
+      <section id="services" ref={servicesAnim.ref} className="py-20 px-6 max-w-7xl mx-auto">
+        <div className={`transition-all duration-700 ${servicesAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="text-center mb-12">
+            <p className="font-golos text-sm font-bold uppercase tracking-[0.25em] neon-text-pink mb-3">Что вас ждёт</p>
+            <h2 className="font-oswald font-black text-4xl md:text-5xl text-white">
               Наши <span className="neon-text-blue">возможности</span>
             </h2>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {SERVICES.map((s, i) => (
               <div key={i}
-                className="group neon-border-blue glass-dark rounded-2xl p-6 flex flex-col gap-4 hover:bg-[#00b4ff08] transition-all duration-300 cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-[#00b4ff11] border border-[#00b4ff33] flex items-center justify-center group-hover:shadow-[0_0_20px_#00b4ff44] transition-all duration-300">
-                  <Icon name={s.icon} size={22} className="text-[#00b4ff]" />
+                className="group glass-dark neon-border-blue rounded-2xl p-6 flex flex-col gap-4 hover:bg-[#3db8e808] transition-all duration-300">
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center"
+                  style={{ background: "rgba(61,184,232,0.1)", border: "1px solid rgba(61,184,232,0.2)" }}>
+                  <Icon name={s.icon} size={20} className="text-[#3db8e8]" />
                 </div>
-                <h3 className="font-oswald text-xl text-white font-semibold">{s.title}</h3>
+                <h3 className="font-oswald font-black text-lg text-white">{s.title}</h3>
                 <p className="font-golos text-white/50 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
@@ -269,21 +347,20 @@ export default function Index() {
       <div className="section-divider" />
 
       {/* EVENTS */}
-      <section id="events" ref={eventsAnim.ref} className="py-24 px-6 max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${eventsAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="text-center mb-16">
-            <p className="font-oswald text-[#00b4ff] uppercase tracking-[0.3em] text-sm mb-3">Для кого</p>
-            <h2 className="font-oswald text-4xl md:text-5xl text-white font-bold">
+      <section id="events" ref={eventsAnim.ref} className="py-20 px-6 max-w-7xl mx-auto">
+        <div className={`transition-all duration-700 ${eventsAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="text-center mb-12">
+            <p className="font-golos text-sm font-bold uppercase tracking-[0.25em] neon-text-blue mb-3">Для кого</p>
+            <h2 className="font-oswald font-black text-4xl md:text-5xl text-white">
               Мы организуем <span className="neon-text-pink">любой</span> праздник
             </h2>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {EVENTS.map((e, i) => (
               <div key={i}
-                className="group neon-border-pink glass-dark rounded-2xl p-6 flex flex-col gap-3 hover:bg-[#ff008008] transition-all duration-300 cursor-default">
-                <span className="text-4xl">{e.emoji}</span>
-                <h3 className="font-oswald text-xl text-white font-semibold">{e.title}</h3>
+                className="glass-dark neon-border-pink rounded-2xl p-6 flex flex-col gap-3 hover:bg-[#e8407a08] transition-all duration-300">
+                <span className="text-3xl">{e.emoji}</span>
+                <h3 className="font-oswald font-black text-lg text-white">{e.title}</h3>
                 <p className="font-golos text-white/50 text-sm">{e.desc}</p>
               </div>
             ))}
@@ -294,33 +371,33 @@ export default function Index() {
       <div className="section-divider" />
 
       {/* FRANCHISE */}
-      <section id="franchise" ref={franchiseAnim.ref} className="py-24 px-6 max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${franchiseAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="relative rounded-3xl overflow-hidden glass-dark p-10 md:p-16"
-            style={{ background: "linear-gradient(135deg, rgba(0,180,255,0.06) 0%, rgba(255,0,128,0.06) 100%)", border: "1px solid rgba(204,0,255,0.2)", boxShadow: "0 0 60px rgba(204,0,255,0.08)" }}>
-            <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#ff0080] opacity-5 blur-[80px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#00b4ff] opacity-5 blur-[80px] pointer-events-none" />
+      <section id="franchise" ref={franchiseAnim.ref} className="py-20 px-6 max-w-7xl mx-auto">
+        <div className={`transition-all duration-700 ${franchiseAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="relative rounded-3xl overflow-hidden p-10 md:p-14 glass-dark"
+            style={{ border: "1px solid rgba(168,85,212,0.25)", boxShadow: "0 0 40px rgba(168,85,212,0.06)" }}>
+            <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#e8407a] opacity-[0.04] blur-[80px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#3db8e8] opacity-[0.04] blur-[80px] pointer-events-none" />
 
             <div className="relative z-10">
-              <div className="text-center mb-12">
-                <p className="font-oswald uppercase tracking-[0.3em] text-sm mb-3" style={{ color: "#cc00ff" }}>Возможности</p>
-                <h2 className="font-oswald text-4xl md:text-5xl text-white font-bold mb-4">
+              <div className="text-center mb-10">
+                <p className="font-golos text-sm font-bold uppercase tracking-[0.25em] mb-3" style={{ color: "#a855d4" }}>Возможности</p>
+                <h2 className="font-oswald font-black text-4xl md:text-5xl text-white mb-4">
                   Откройте свою студию<br />
-                  <span style={{ color: "#cc00ff", textShadow: "0 0 10px #cc00ff, 0 0 20px #cc00ff88" }}>ЛАЙФДРАЙФ</span>
+                  <span style={{ color: "#c47de0" }}>ЛАЙФДРАЙФ</span>
                 </h2>
-                <p className="font-golos text-white/60 text-lg max-w-2xl mx-auto">
+                <p className="font-golos text-white/55 text-lg max-w-2xl mx-auto">
                   Готовы запустить собственный бизнес в сфере праздников? Приобретите франшизу и начните работать под узнаваемым брендом с полной поддержкой команды.
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 {FRANCHISE_PERKS.map((p, i) => (
                   <div key={i} className="text-center flex flex-col items-center gap-3 p-4">
-                    <div className="w-14 h-14 rounded-full flex items-center justify-center"
-                      style={{ background: "rgba(204,0,255,0.12)", border: "1px solid rgba(204,0,255,0.3)", boxShadow: "0 0 20px rgba(204,0,255,0.15)" }}>
-                      <Icon name={p.icon} size={24} style={{ color: "#cc00ff" }} />
+                    <div className="w-13 h-13 w-14 h-14 rounded-full flex items-center justify-center"
+                      style={{ background: "rgba(168,85,212,0.1)", border: "1px solid rgba(168,85,212,0.25)" }}>
+                      <Icon name={p.icon} size={22} style={{ color: "#c47de0" }} />
                     </div>
-                    <h3 className="font-oswald text-lg text-white font-semibold">{p.title}</h3>
+                    <h3 className="font-oswald font-black text-lg text-white">{p.title}</h3>
                     <p className="font-golos text-white/50 text-sm">{p.desc}</p>
                   </div>
                 ))}
@@ -328,8 +405,8 @@ export default function Index() {
 
               <div className="text-center">
                 <a href="#contacts">
-                  <button className="font-oswald text-lg px-12 py-4 rounded-xl uppercase tracking-widest text-white transition-all duration-300 hover:scale-105"
-                    style={{ background: "linear-gradient(135deg, #cc00ff, #ff0080)", boxShadow: "0 0 30px rgba(204,0,255,0.5), 0 0 60px rgba(255,0,128,0.3)" }}>
+                  <button className="font-oswald font-black text-lg px-12 py-4 rounded-2xl uppercase tracking-widest text-white transition-all duration-300 hover:scale-105"
+                    style={{ background: "linear-gradient(135deg, #a855d4, #e8407a)", boxShadow: "0 4px 24px rgba(168,85,212,0.35)" }}>
                     Узнать о франшизе
                   </button>
                 </a>
@@ -342,126 +419,112 @@ export default function Index() {
       <div className="section-divider" />
 
       {/* CONTACTS */}
-      <section id="contacts" ref={contactAnim.ref} className="py-24 px-6 max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${contactAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="text-center mb-16">
-            <p className="font-oswald text-[#ff0080] uppercase tracking-[0.3em] text-sm mb-3">Свяжитесь с нами</p>
-            <h2 className="font-oswald text-4xl md:text-5xl text-white font-bold">
+      <section id="contacts" ref={contactAnim.ref} className="py-20 px-6 max-w-7xl mx-auto">
+        <div className={`transition-all duration-700 ${contactAnim.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="text-center mb-12">
+            <p className="font-golos text-sm font-bold uppercase tracking-[0.25em] neon-text-pink mb-3">Свяжитесь с нами</p>
+            <h2 className="font-oswald font-black text-4xl md:text-5xl text-white">
               Давайте создадим ваш <span className="neon-text-blue">праздник</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="neon-border-blue glass-dark rounded-3xl p-8">
-              <h3 className="font-oswald text-2xl text-white font-bold mb-6">Оставить заявку</h3>
+          <div className="grid md:grid-cols-2 gap-10">
+            {/* форма */}
+            <div className="glass-dark neon-border-blue rounded-3xl p-8">
+              <h3 className="font-oswald font-black text-2xl text-white mb-6">Оставить заявку</h3>
               {sent ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4">
-                  <div className="w-16 h-16 rounded-full bg-[#00b4ff11] border border-[#00b4ff44] flex items-center justify-center">
-                    <Icon name="CheckCircle" size={32} className="text-[#00b4ff]" />
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(61,184,232,0.1)", border: "1px solid rgba(61,184,232,0.3)" }}>
+                    <Icon name="CheckCircle" size={32} className="text-[#3db8e8]" />
                   </div>
-                  <p className="font-oswald text-2xl text-white">Заявка отправлена!</p>
+                  <p className="font-oswald font-black text-2xl text-white">Заявка отправлена!</p>
                   <p className="font-golos text-white/50 text-center">Мы свяжемся с вами в ближайшее время</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div>
-                    <label className="font-golos text-white/50 text-sm mb-1 block">Ваше имя</label>
+                    <label className="font-golos text-white/50 text-sm mb-1 block font-bold">Ваше имя</label>
                     <input
-                      type="text"
-                      required
-                      value={form.name}
+                      type="text" required value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })}
                       placeholder="Как вас зовут?"
-                      className="w-full bg-[#ffffff08] border border-[#00b4ff22] rounded-xl px-4 py-3 text-white font-golos placeholder-white/20 outline-none focus:border-[#00b4ff66] transition-all duration-200"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-golos placeholder-white/20 outline-none focus:border-[#3db8e8] transition-all duration-200"
                     />
                   </div>
                   <div>
-                    <label className="font-golos text-white/50 text-sm mb-1 block">Телефон</label>
+                    <label className="font-golos text-white/50 text-sm mb-1 block font-bold">Телефон</label>
                     <input
-                      type="tel"
-                      required
-                      value={form.phone}
+                      type="tel" required value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       placeholder="+7 (___) ___-__-__"
-                      className="w-full bg-[#ffffff08] border border-[#00b4ff22] rounded-xl px-4 py-3 text-white font-golos placeholder-white/20 outline-none focus:border-[#00b4ff66] transition-all duration-200"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-golos placeholder-white/20 outline-none focus:border-[#3db8e8] transition-all duration-200"
                     />
                   </div>
                   <div>
-                    <label className="font-golos text-white/50 text-sm mb-1 block">Тип мероприятия / комментарий</label>
+                    <label className="font-golos text-white/50 text-sm mb-1 block font-bold">Тип мероприятия</label>
                     <textarea
                       value={form.message}
                       onChange={e => setForm({ ...form, message: e.target.value })}
                       placeholder="Расскажите о вашем событии..."
                       rows={4}
-                      className="w-full bg-[#ffffff08] border border-[#00b4ff22] rounded-xl px-4 py-3 text-white font-golos placeholder-white/20 outline-none focus:border-[#00b4ff66] transition-all duration-200 resize-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-golos placeholder-white/20 outline-none focus:border-[#3db8e8] transition-all duration-200 resize-none"
                     />
                   </div>
-                  <button type="submit"
-                    className="neon-btn-pink font-oswald text-lg py-4 rounded-xl uppercase tracking-widest w-full mt-2">
+                  <button type="submit" className="neon-btn-pink font-oswald font-black text-lg py-4 rounded-xl uppercase tracking-widest w-full mt-1">
                     Отправить заявку
                   </button>
                 </form>
               )}
             </div>
 
-            <div className="flex flex-col gap-6">
-              <div className="neon-border-pink glass-dark rounded-2xl p-6 flex gap-4 items-start">
-                <div className="w-12 h-12 rounded-xl bg-[#ff008011] border border-[#ff008033] flex items-center justify-center flex-shrink-0">
-                  <Icon name="MapPin" size={22} className="text-[#ff0080]" />
+            {/* контакты */}
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  icon: "MapPin", color: "#e8407a",
+                  title: "Салехард", text: "ул. Маяковского 19А", sub: "Основная студия"
+                },
+                {
+                  icon: "MapPin", color: "#ffbe32",
+                  title: "Мелеуз — новая студия!", text: "Уточняйте адрес при записи", sub: "Только открылась"
+                },
+                {
+                  icon: "Clock", color: "#3db8e8",
+                  title: "Режим работы", text: "Ежедневно: 10:00 — 22:00", sub: "По предварительной записи"
+                },
+                {
+                  icon: "Phone", color: "#3db8e8",
+                  title: "Связаться с нами", text: "Оставьте заявку — перезвоним!", sub: "Работаем ежедневно"
+                },
+              ].map((c, i) => (
+                <div key={i} className="glass-dark rounded-2xl p-5 flex gap-4 items-start"
+                  style={{ border: `1px solid ${c.color}22` }}>
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: `${c.color}14`, border: `1px solid ${c.color}33` }}>
+                    <Icon name={c.icon} size={20} style={{ color: c.color }} />
+                  </div>
+                  <div>
+                    <p className="font-oswald font-black text-white text-base mb-0.5">{c.title}</p>
+                    <p className="font-golos text-white/60 text-sm">{c.text}</p>
+                    <p className="font-golos text-white/35 text-xs mt-0.5">{c.sub}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-oswald text-white text-lg font-semibold mb-1">Адрес студии</p>
-                  <p className="font-golos text-white/60">г. Салехард, ул. Маяковского 19А</p>
-                  <p className="font-golos text-white/40 text-sm mt-1">Стильный лофт в центре города</p>
-                </div>
-              </div>
-
-              <div className="neon-border-blue glass-dark rounded-2xl p-6 flex gap-4 items-start">
-                <div className="w-12 h-12 rounded-xl bg-[#00b4ff11] border border-[#00b4ff33] flex items-center justify-center flex-shrink-0">
-                  <Icon name="Clock" size={22} className="text-[#00b4ff]" />
-                </div>
-                <div>
-                  <p className="font-oswald text-white text-lg font-semibold mb-1">Режим работы</p>
-                  <p className="font-golos text-white/60">Ежедневно: 10:00 — 22:00</p>
-                  <p className="font-golos text-white/40 text-sm mt-1">Мероприятия — по предварительной записи</p>
-                </div>
-              </div>
-
-              <div className="neon-border-blue glass-dark rounded-2xl p-6 flex gap-4 items-start">
-                <div className="w-12 h-12 rounded-xl bg-[#00b4ff11] border border-[#00b4ff33] flex items-center justify-center flex-shrink-0">
-                  <Icon name="Phone" size={22} className="text-[#00b4ff]" />
-                </div>
-                <div>
-                  <p className="font-oswald text-white text-lg font-semibold mb-1">Связаться с нами</p>
-                  <p className="font-golos text-white/60">Оставьте заявку — перезвоним!</p>
-                  <p className="font-golos text-white/40 text-sm mt-1">Работаем для вас ежедневно</p>
-                </div>
-              </div>
-
-              <div className="rounded-2xl overflow-hidden border border-[#ffffff10]" style={{ height: "200px" }}>
-                <iframe
-                  src="https://yandex.ru/map-widget/v1/?pt=66.5448,66.5402&z=16&l=map"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  className="grayscale opacity-70"
-                  title="Карта"
-                />
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/5 py-8 px-6 mt-8">
+      <footer className="border-t border-white/5 py-8 px-6 mt-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-1">
-            <span className="font-oswald text-xl font-bold neon-text-blue">ЛАЙФ</span>
-            <span className="font-oswald text-xl font-bold neon-text-pink">ДРАЙФ</span>
+            <span className="font-oswald font-black text-xl neon-text-blue">ЛАЙФ</span>
+            <span className="font-oswald font-black text-xl neon-text-pink">ДРАЙФ</span>
             <span className="font-golos text-white/30 text-sm ml-2">— Студия шоу-игр</span>
           </div>
-          <p className="font-golos text-white/30 text-sm">г. Салехард, ул. Маяковского 19А</p>
+          <p className="font-golos text-white/30 text-sm">Салехард · Мелеуз</p>
           <p className="font-golos text-white/20 text-xs">© 2025 ЛАЙФДРАЙФ. Все права защищены.</p>
         </div>
       </footer>
