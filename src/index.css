@@ -34,9 +34,9 @@
 
     --radius: 0.75rem;
 
-    --accent-blue: #3db8e8;
-    --accent-pink: #e8407a;
-    --accent-purple: #a855d4;
+    --neon-blue: #00b4ff;
+    --neon-pink: #ff0080;
+    --neon-purple: #cc00ff;
   }
 }
 
@@ -47,21 +47,16 @@
 
   body {
     @apply bg-background text-foreground font-golos;
-    background-color: #0d0d18;
+    background-color: #080810;
     background-image:
       radial-gradient(
-        ellipse at 15% 40%,
-        rgba(61, 184, 232, 0.06) 0%,
-        transparent 55%
+        ellipse at 20% 50%,
+        rgba(0, 180, 255, 0.04) 0%,
+        transparent 50%
       ),
       radial-gradient(
-        ellipse at 85% 20%,
-        rgba(232, 64, 122, 0.05) 0%,
-        transparent 55%
-      ),
-      radial-gradient(
-        ellipse at 50% 90%,
-        rgba(168, 85, 212, 0.04) 0%,
+        ellipse at 80% 20%,
+        rgba(255, 0, 128, 0.04) 0%,
         transparent 50%
       );
   }
@@ -72,72 +67,84 @@
 }
 
 @layer utilities {
-  .glow-blue {
-    color: #3db8e8;
-    text-shadow: 0 0 18px rgba(61, 184, 232, 0.5);
-  }
-
-  .glow-pink {
-    color: #e8407a;
-    text-shadow: 0 0 18px rgba(232, 64, 122, 0.5);
-  }
-
-  /* совместимость с прежними классами — убавленный неон */
   .neon-text-blue {
-    color: #3db8e8;
-    text-shadow: 0 0 12px rgba(61, 184, 232, 0.45);
+    color: #00b4ff;
+    text-shadow:
+      0 0 10px #00b4ff,
+      0 0 20px #00b4ff,
+      0 0 40px #00b4ff88;
   }
 
   .neon-text-pink {
-    color: #e8407a;
-    text-shadow: 0 0 12px rgba(232, 64, 122, 0.45);
+    color: #ff0080;
+    text-shadow:
+      0 0 10px #ff0080,
+      0 0 20px #ff0080,
+      0 0 40px #ff008088;
   }
 
   .neon-text-white {
-    color: #e8f4ff;
-    text-shadow: 0 0 8px rgba(61, 184, 232, 0.2);
+    color: #e0f0ff;
+    text-shadow:
+      0 0 8px #e0f0ff,
+      0 0 16px #00b4ff55;
   }
 
   .neon-border-blue {
-    border: 1px solid rgba(61, 184, 232, 0.25);
-    box-shadow: 0 0 12px rgba(61, 184, 232, 0.08);
+    border: 1px solid #00b4ff44;
+    box-shadow:
+      0 0 15px #00b4ff22,
+      inset 0 0 15px #00b4ff11;
   }
 
   .neon-border-pink {
-    border: 1px solid rgba(232, 64, 122, 0.25);
-    box-shadow: 0 0 12px rgba(232, 64, 122, 0.08);
+    border: 1px solid #ff008044;
+    box-shadow:
+      0 0 15px #ff008022,
+      inset 0 0 15px #ff008011;
   }
 
   .neon-btn-blue {
     background: transparent;
-    border: 2px solid #3db8e8;
-    color: #3db8e8;
+    border: 2px solid #00b4ff;
+    color: #00b4ff;
+    text-shadow: 0 0 8px #00b4ff;
+    box-shadow:
+      0 0 15px #00b4ff44,
+      inset 0 0 15px #00b4ff11;
     transition: all 0.3s ease;
   }
 
   .neon-btn-blue:hover {
-    background: rgba(61, 184, 232, 0.1);
-    box-shadow: 0 0 18px rgba(61, 184, 232, 0.25);
+    background: #00b4ff18;
+    box-shadow:
+      0 0 25px #00b4ff66,
+      inset 0 0 20px #00b4ff22;
     transform: translateY(-2px);
   }
 
   .neon-btn-pink {
-    background: linear-gradient(135deg, #e8407a, #a855d4);
+    background: linear-gradient(135deg, #ff0080, #cc00ff);
     border: none;
     color: #ffffff;
-    box-shadow: 0 4px 20px rgba(232, 64, 122, 0.35);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 0 20px #ff008066,
+      0 0 40px #ff008033;
     transition: all 0.3s ease;
   }
 
   .neon-btn-pink:hover {
-    box-shadow: 0 6px 28px rgba(232, 64, 122, 0.5);
+    box-shadow:
+      0 0 30px #ff008088,
+      0 0 60px #ff008055;
     transform: translateY(-2px);
   }
 
   .glass-dark {
-    background: rgba(14, 14, 26, 0.75);
+    background: rgba(10, 10, 20, 0.7);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .section-divider {
@@ -145,27 +152,9 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(61, 184, 232, 0.25),
-      rgba(232, 64, 122, 0.25),
+      #00b4ff44,
+      #ff008044,
       transparent
     );
-  }
-
-  .card-kids {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 200, 50, 0.06),
-      rgba(255, 100, 150, 0.06)
-    );
-    border: 1px solid rgba(255, 190, 50, 0.2);
-  }
-
-  .card-adults {
-    background: linear-gradient(
-      135deg,
-      rgba(61, 184, 232, 0.06),
-      rgba(168, 85, 212, 0.06)
-    );
-    border: 1px solid rgba(61, 184, 232, 0.2);
   }
 }
