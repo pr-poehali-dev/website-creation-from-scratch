@@ -4,89 +4,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 4%;
+    --foreground: 210 40% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 10% 8%;
+    --card-foreground: 210 40% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 210 40% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 196 100% 50%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 330 100% 50%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 10% 12%;
+    --muted-foreground: 215 20% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 285 100% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 196 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --neon-blue: #00b4ff;
+    --neon-pink: #ff0080;
+    --neon-purple: #cc00ff;
   }
 }
 
@@ -96,6 +46,115 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-golos;
+    background-color: #080810;
+    background-image:
+      radial-gradient(
+        ellipse at 20% 50%,
+        rgba(0, 180, 255, 0.04) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(255, 0, 128, 0.04) 0%,
+        transparent 50%
+      );
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .neon-text-blue {
+    color: #00b4ff;
+    text-shadow:
+      0 0 10px #00b4ff,
+      0 0 20px #00b4ff,
+      0 0 40px #00b4ff88;
+  }
+
+  .neon-text-pink {
+    color: #ff0080;
+    text-shadow:
+      0 0 10px #ff0080,
+      0 0 20px #ff0080,
+      0 0 40px #ff008088;
+  }
+
+  .neon-text-white {
+    color: #e0f0ff;
+    text-shadow:
+      0 0 8px #e0f0ff,
+      0 0 16px #00b4ff55;
+  }
+
+  .neon-border-blue {
+    border: 1px solid #00b4ff44;
+    box-shadow:
+      0 0 15px #00b4ff22,
+      inset 0 0 15px #00b4ff11;
+  }
+
+  .neon-border-pink {
+    border: 1px solid #ff008044;
+    box-shadow:
+      0 0 15px #ff008022,
+      inset 0 0 15px #ff008011;
+  }
+
+  .neon-btn-blue {
+    background: transparent;
+    border: 2px solid #00b4ff;
+    color: #00b4ff;
+    text-shadow: 0 0 8px #00b4ff;
+    box-shadow:
+      0 0 15px #00b4ff44,
+      inset 0 0 15px #00b4ff11;
+    transition: all 0.3s ease;
+  }
+
+  .neon-btn-blue:hover {
+    background: #00b4ff18;
+    box-shadow:
+      0 0 25px #00b4ff66,
+      inset 0 0 20px #00b4ff22;
+    transform: translateY(-2px);
+  }
+
+  .neon-btn-pink {
+    background: linear-gradient(135deg, #ff0080, #cc00ff);
+    border: none;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 0 20px #ff008066,
+      0 0 40px #ff008033;
+    transition: all 0.3s ease;
+  }
+
+  .neon-btn-pink:hover {
+    box-shadow:
+      0 0 30px #ff008088,
+      0 0 60px #ff008055;
+    transform: translateY(-2px);
+  }
+
+  .glass-dark {
+    background: rgba(10, 10, 20, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #00b4ff44,
+      #ff008044,
+      transparent
+    );
   }
 }
