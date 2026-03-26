@@ -113,35 +113,66 @@ export default function Index() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
-          <div className="mb-8 flex justify-center">
-            <img
-              src="https://cdn.poehali.dev/projects/3e4fa183-e244-463c-a1c5-d541bb2b4e6c/bucket/1ada720f-8bf6-4447-9c0e-6472b3bb9641.jpg"
-              alt="ЛАЙФДРАЙФ — Студия шоу-игр"
-              className="w-full max-w-lg rounded-2xl opacity-90 animate-neon-pulse"
-              style={{ boxShadow: "0 0 60px rgba(0,180,255,0.3), 0 0 120px rgba(255,0,128,0.2)" }}
-            />
-          </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-16">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
 
-          <p className="font-golos text-lg md:text-2xl text-white/70 mb-4 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            Превращаем любое событие в <span className="neon-text-blue font-semibold">феерию эмоций!</span>
-          </p>
+            {/* LEFT — текст */}
+            <div className="flex flex-col gap-6 animate-fade-in-up">
+              {/* бейдж новой студии */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full self-start"
+                style={{ background: "rgba(255,0,128,0.12)", border: "1px solid rgba(255,0,128,0.4)", boxShadow: "0 0 15px rgba(255,0,128,0.2)" }}>
+                <span className="w-2 h-2 rounded-full bg-[#ff0080] animate-pulse" style={{ boxShadow: "0 0 6px #ff0080" }} />
+                <span className="font-golos text-sm text-[#ff0080] font-semibold tracking-wide">Открылась вторая студия в г. Мелеуз!</span>
+              </div>
 
-          <p className="font-golos text-base text-white/50 mb-10 max-w-xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            Стильный лофт в Салехарде · Шоу-игры · Профи-ведущие · Живое настоящее веселье
-          </p>
+              <h1 className="font-oswald leading-tight">
+                <span className="block text-5xl md:text-6xl lg:text-7xl text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.1)" }}>
+                  Студия шоу-игр
+                </span>
+                <span className="block text-5xl md:text-6xl lg:text-7xl mt-1">
+                  <span className="neon-text-blue">«ЛАЙФ</span><span className="neon-text-pink">ДРАЙФ»</span>
+                </span>
+              </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-            <a href="#contacts">
-              <button className="neon-btn-pink font-oswald text-lg px-10 py-4 rounded-xl uppercase tracking-widest">
-                Забронировать праздник
-              </button>
-            </a>
-            <a href="#services">
-              <button className="neon-btn-blue font-oswald text-lg px-10 py-4 rounded-xl uppercase tracking-widest">
-                Узнать больше
-              </button>
-            </a>
+              <p className="font-golos text-lg text-white/60 leading-relaxed max-w-lg" style={{ animationDelay: "0.2s" }}>
+                Превращаем любое событие в <span className="text-white font-semibold">феерию эмоций!</span> Шоу-игры, профи-ведущие, живое настоящее веселье.
+              </p>
+
+              <div className="flex items-center gap-4 text-white/40 font-golos text-sm">
+                <div className="flex items-center gap-1.5">
+                  <Icon name="MapPin" size={14} className="text-[#00b4ff]" />
+                  <span>Салехард</span>
+                </div>
+                <span className="text-white/20">·</span>
+                <div className="flex items-center gap-1.5">
+                  <Icon name="MapPin" size={14} className="text-[#ff0080]" />
+                  <span className="text-[#ff0080] font-semibold">Мелеуз — новая!</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 mt-2" style={{ animationDelay: "0.4s" }}>
+                <a href="#contacts">
+                  <button className="neon-btn-pink font-oswald text-base px-8 py-4 rounded-xl uppercase tracking-widest">
+                    Забронировать праздник
+                  </button>
+                </a>
+                <a href="#services">
+                  <button className="neon-btn-blue font-oswald text-base px-8 py-4 rounded-xl uppercase tracking-widest">
+                    Узнать больше
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            {/* RIGHT — фото */}
+            <div className="flex justify-center md:justify-end animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+              <img
+                src="https://cdn.poehali.dev/projects/3e4fa183-e244-463c-a1c5-d541bb2b4e6c/bucket/1ada720f-8bf6-4447-9c0e-6472b3bb9641.jpg"
+                alt="ЛАЙФДРАЙФ — Студия шоу-игр"
+                className="w-full max-w-md rounded-3xl opacity-95 animate-neon-pulse"
+                style={{ boxShadow: "0 0 60px rgba(0,180,255,0.35), 0 0 120px rgba(255,0,128,0.2)" }}
+              />
+            </div>
           </div>
         </div>
 

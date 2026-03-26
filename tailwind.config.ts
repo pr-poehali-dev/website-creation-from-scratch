@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				oswald: ['Oswald', 'sans-serif'],
-				golos: ['Golos Text', 'sans-serif'],
+				oswald: ['Russo One', 'sans-serif'],
+				golos: ['Raleway', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
